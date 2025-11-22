@@ -1,9 +1,9 @@
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from openai import OpenAI
+from dotenv import load_dotenv
 import os
 import tempfile
-from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()
@@ -16,7 +16,14 @@ api_key = os.getenv('OPENAI_API_KEY')
 if not api_key:
     raise ValueError("OPENAI_API_KEY environment variable is not set. Please create a .env file with your API key.")
 
-client = OpenAI(api_key=api_key)
+# Strip any whitespace/newlines from the API key
+api_key = api_key.strip()
+
+# Initialize OpenAI client
+try:
+    client = OpenAI(api_key=api_key)
+except Exception as e:
+    raise ValueError(f"Failed to initialize OpenAI client: {str(e)}")
 
 @app.route('/')
 def index():

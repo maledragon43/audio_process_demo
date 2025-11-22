@@ -11,21 +11,16 @@ A simple web application that records audio from your microphone and transcribes
 
 ## Setup
 
-1. **Install Python dependencies:**
+1. **Create a `.env` file:**
+   Create a file named `.env` in the project root with your OpenAI API key:
+   ```
+   OPENAI_API_KEY=your_api_key_here
+   ```
+
+2. **Install Python dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
-
-2. **Set up your OpenAI API key:**
-   
-   Create a `.env` file in the project root directory:
-   ```bash
-   OPENAI_API_KEY=your_openai_api_key_here
-   ```
-   
-   Replace `your_openai_api_key_here` with your actual OpenAI API key.
-   
-   **Note:** The `.env` file is already in `.gitignore` and will not be committed to version control.
 
 3. **Run the Flask server:**
    ```bash
@@ -46,7 +41,7 @@ A simple web application that records audio from your microphone and transcribes
 
 - Python 3.7+
 - Modern web browser with microphone access
-- OpenAI API key (set in `.env` file)
+- OpenAI API key (configure in `.env` file)
 
 ## Notes
 
