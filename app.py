@@ -3,12 +3,20 @@ from flask_cors import CORS
 from openai import OpenAI
 import os
 import tempfile
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 
-# Initialize OpenAI client
-client = OpenAI(api_key="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")
+# Initialize OpenAI client with API key from environment variable
+api_key = os.getenv('OPENAI_API_KEY')
+if not api_key:
+    raise ValueError("OPENAI_API_KEY environment variable is not set. Please create a .env file with your API key.")
+
+client = OpenAI(api_key=api_key)
 
 @app.route('/')
 def index():
